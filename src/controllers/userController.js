@@ -1,5 +1,3 @@
-import userSchema from "../models/userModel.js"
-
 //login
 const loginUser = async (req, res) => {
   res.json({message: "login user"})
