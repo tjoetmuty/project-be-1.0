@@ -23,7 +23,7 @@ const userSchema = new Schema ({
 userSchema.statics.signup = async function (email, password, username ) {
   //validation
   if(!email || !password){
-    throw Error('all fields mut be filled')
+    throw Error('all fields must be filled')
   }
   if(!validator.isEmail(email)){
     throw Error('email is not valid')
