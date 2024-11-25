@@ -32,12 +32,26 @@ const signupUser = async (req, res) => {
 
     //create token
     const token = createToken(user._id)
+    console.log("token: ", token)
 
-    res.status(200).json({email, user, token})
+    res.status(200).json({user, token})
   } catch (error){
     res.status(400).json({error: error.message})
   }
 }
 
+//users
+const usersAccount = async (req, res) => {
+  try{
+    const getUsers = await userModel.find()
+    res.status(200).json({
+      message: "get data success",
+      data: getUsers
+    })
+  } catch (err) {
+    console.log(err)
+  }
+}
 
-export default {loginUser, signupUser}
+
+export default {loginUser, signupUser, usersAccount}
