@@ -4,6 +4,7 @@ import dotenv from "dotenv"
 import mongoose from "mongoose";
 
 import userRoutes from "./src/routes/userRoute.js"
+import libRoutes from "./src/routes/libraryRoute.js"
 
 const app = express();
 
@@ -17,6 +18,7 @@ mongoose.connect(process.env.DATABASE_URL)
 .then(() => {
   app.listen(process.env.PORT, () => {
     console.log("listening on port ", process.env.PORT)
+    console.log("berhasil cut muty")
   })
 })
 .catch((error) => {
@@ -25,8 +27,4 @@ mongoose.connect(process.env.DATABASE_URL)
 
 //route
 app.use('/api/auth', userRoutes)
-
-app.get( '/', (req, res) => {
-  console.log("welcome to API mutyyyy untuk apa hayooo")
-  res.json("welcome halo to API mutyyyy untuk apa hayooo")
-})
+app.use('/lib' ,libRoutes)
