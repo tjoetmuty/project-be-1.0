@@ -34,7 +34,7 @@ const signupUser = async (req, res) => {
     const token = createToken(user._id)
     console.log("token: ", token)
 
-    res.status(200).json({email, token})
+    res.status(200).json({username, token})
   } catch (error){
     res.status(400).json({error: error.message})
   }
@@ -53,5 +53,19 @@ const usersAccount = async (req, res) => {
   }
 }
 
+//user profile
+const userProfile = async (req, res) => {
+  try {
+    const getUser = await userModel.findById(req.user._id).select('-password');
+    if (!getUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(getUser)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ message: 'Server error' });
+  }
+};
 
-export default {loginUser, signupUser, usersAccount}
+
+export default {loginUser, signupUser, usersAccount, userProfile}
