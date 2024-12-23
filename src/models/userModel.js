@@ -16,7 +16,8 @@ const userSchema = new Schema ({
   username: {
     type: String,
     required: true,
-  }
+  },
+  verified: Boolean
 })
 
 //static signup method
